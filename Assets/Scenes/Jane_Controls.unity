@@ -234,7 +234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ZRotation: 180
-  Force: 0
+  Force: 2.2
+  _player: 1
 --- !u!114 &158671732
 MonoBehaviour:
   m_ObjectHideFlags: 0
