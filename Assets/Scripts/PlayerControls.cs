@@ -28,39 +28,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ""id"": ""569141ae-c5ff-434d-9818-7a41c7cec1b9"",
             ""actions"": [
                 {
-                    ""name"": ""Player 1"",
+                    ""name"": ""Player1"",
                     ""type"": ""Button"",
                     ""id"": ""20809128-4dfa-440e-994a-7070bcdbb5bc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,Hold"",
+                    ""interactions"": ""Tap,MultiTap,Hold"",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Player 2"",
+                    ""name"": ""Player2"",
                     ""type"": ""Button"",
                     ""id"": ""2c7f5d28-22ef-470a-bf3d-c137b88ea938"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,Hold"",
+                    ""interactions"": ""Tap,MultiTap,Hold"",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Player 3"",
+                    ""name"": ""Player3"",
                     ""type"": ""Button"",
                     ""id"": ""844e02f9-c7f3-4ba1-b021-3e834a6e7abd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,Hold"",
+                    ""interactions"": ""Tap,MultiTap,Hold"",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Player 4"",
+                    ""name"": ""Player4"",
                     ""type"": ""Button"",
                     ""id"": ""fc5caa1c-28fc-41dd-aeda-8ae5d4154263"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,Hold"",
+                    ""interactions"": ""Tap,MultiTap,Hold"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -69,10 +69,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""34394026-1f57-4c67-b574-c740e2ade1bb"",
                     ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": ""Tap,Hold"",
+                    ""interactions"": ""Tap,MultiTap,Hold"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player 1"",
+                    ""action"": ""Player1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -80,10 +80,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""b1784fa3-ed5f-4158-9cb7-cbcd88102412"",
                     ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": ""Tap,Hold"",
+                    ""interactions"": ""Tap,MultiTap,Hold"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player 2"",
+                    ""action"": ""Player2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -91,10 +91,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""849d2c6f-34b8-45eb-af62-d7f7a52e47c0"",
                     ""path"": ""<Keyboard>/rightCtrl"",
-                    ""interactions"": ""Tap,Hold"",
+                    ""interactions"": ""Tap,MultiTap,Hold"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player 3"",
+                    ""action"": ""Player3"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -102,10 +102,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""01e33957-2c91-41cb-9d46-0241b61126cd"",
                     ""path"": ""<Keyboard>/leftAlt"",
-                    ""interactions"": ""Tap,Hold"",
+                    ""interactions"": ""Tap,MultiTap,Hold"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Player 4"",
+                    ""action"": ""Player4"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -116,10 +116,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
 }");
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_Player1 = m_Player.FindAction("Player 1", throwIfNotFound: true);
-        m_Player_Player2 = m_Player.FindAction("Player 2", throwIfNotFound: true);
-        m_Player_Player3 = m_Player.FindAction("Player 3", throwIfNotFound: true);
-        m_Player_Player4 = m_Player.FindAction("Player 4", throwIfNotFound: true);
+        m_Player_Player1 = m_Player.FindAction("Player1", throwIfNotFound: true);
+        m_Player_Player2 = m_Player.FindAction("Player2", throwIfNotFound: true);
+        m_Player_Player3 = m_Player.FindAction("Player3", throwIfNotFound: true);
+        m_Player_Player4 = m_Player.FindAction("Player4", throwIfNotFound: true);
     }
 
     public void Dispose()

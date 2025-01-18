@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -22,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private bool _isTap = false;
     private bool _hasItem = false;
 
+    [SerializeField]
     private float _holdDuration;
     private PlayerControls _controls;
 
@@ -30,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         _controls = new PlayerControls();
 
+        
         switch(_player)
         {
             case 1:
@@ -54,119 +58,74 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-       
-        //_controls.Player.Player2.performed += context =>
-        //{
-        //    if (context.interaction is HoldInteraction)
-        //    {
-        //        HoldAbility();
-        //    }
-        //    else if (context.interaction is TapInteraction)
-        //    {
-        //        ApplyForce();
-        //    }
-        //};
-
-        //_controls.Player.Player3.performed += context =>
-        //{
-        //    if (context.interaction is HoldInteraction)
-        //    {
-        //        HoldAbility();
-        //    }
-        //    else if (context.interaction is TapInteraction)
-        //    {
-        //        ApplyForce();
-        //    }
-        //};
-
-        //_controls.Player.Player4.performed += context =>
-        //{
-        //    if (context.interaction is HoldInteraction)
-        //    {
-        //        HoldAbility();
-        //    }
-        //    else if (context.interaction is TapInteraction)
-        //    {
-        //        ApplyForce();
-        //    }
-        //};
-
-
-
-
-
-
-
-        _controls.Player.Player2.canceled -= context =>
+        _controls.Player.Player1.performed += context =>
         {
-            if (context.interaction is HoldInteraction)
+            if (context.interaction is TapInteraction)
             {
-                HoldRelease();
+                Debug.Log("TAP performed");
+                Tap(context);
             }
-            else if (context.interaction is TapInteraction)
+            else if (context.interaction is HoldInteraction)
             {
-                ApplyForce();
+                Debug.Log("HOLD performed");
+                Hold(context);
             }
-        };
 
-        _controls.Player.Player3.canceled -= context =>
-        {
-            if (context.interaction is HoldInteraction)
-            {
-                HoldRelease();
-            }
-            else if (context.interaction is TapInteraction)
-            {
-                ApplyForce();
-            }
-        };
 
-        _controls.Player.Player4.canceled -= context =>
-        {
-            if (context.interaction is HoldInteraction)
-            {
-                HoldRelease();
-            }
-            else if (context.interaction is TapInteraction)
-            {
-                ApplyForce();
-            }
+            // HOW TO CANCEL AND DIFFERENTIATE BETWEEN TAP HOLD ?
+            
+            //_controls.Player.Player1.canceled += HoldRelease;
         };
-
 
 
     }
 
-    private void HoldAbility()
+    private void Tap(InputAction.CallbackContext context)
     {
-        Debug.Log("HELD");
-        _isHeld = true;
-        this.transform.Rotate(0,0,0);
-        _rb.velocity = Vector3.zero;
-        // stop rotation
-    }
+        // Apply force
+        Debug.Log("TAP called");
+        Debug.Log(_rb.name);
+        _isTap = true;
+        Vector2 test = new Vector2(transform.right.x, transform.right.y);
+        _rb.AddForce(test* Force, ForceMode2D.Impulse);
 
-    private void HoldRelease()
-    {
-        // use item 
-
-        _isHeld = false;
+        Debug.Log("Force applied: " + test * Force);
         
     }
 
     private void TapRelease()
     {
-        // wait float seconds
-        // continue rotations
-        _isTap = false;
-        this.transform.Rotate(Vector3.forward * ZRotation * Time.deltaTime);
-    }
-    private void ApplyForce()
-    {
-        Debug.Log("Apply FORCE");
-        _isTap = true;
-        this.transform.Rotate(0, 0, 0);
+        // Player should start rotating again
+        Debug.Log("TAP is RELEASED");
+
         _rb.AddForce(transform.right * Force, ForceMode2D.Impulse);
+        _rb.velocity = Vector3.zero;
+        _isTap = false;
+
+    }
+
+    private void MultiTap(InputAction.CallbackContext context)
+    {
+        // Stop spinning out of control
+    }
+
+    private void Hold(InputAction.CallbackContext context)
+    {
+        // Stop rotation
+        Debug.Log("HOLD called");
+
+        _isHeld = true;
+        this.transform.Rotate(0, 0, 0);
+        _rb.velocity = Vector3.zero;
+    }
+    private void HoldRelease()
+    {
+        // Move forward
+        Debug.Log("HOLD is RELEASED");
+
+        _isHeld = false;
+        _rb.velocity = Vector3.zero;
+
     }
 
     private void Start()
@@ -178,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Player is always rotating in a fixed position
 
-        if (_isHeld != true || _isTap != true)
+        if (_isHeld != true && _isTap != true)
         {
             Debug.Log("Rotating in fixed position");
 
@@ -191,33 +150,22 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        if (_controls.Player.Player1.IsPressed())
-        {
-            ApplyForce();
-        }
-        if (_controls.Player.Player1.WasPressedThisFrame())
-        {
-            _holdDuration += Time.deltaTime;
-            if (_holdDuration >= 0.5f)
-            {
-                _isHeld = true;
-                HoldAbility();
-            }
-
-        }
-        else if (_controls.Player.Player1.WasReleasedThisFrame())
+        if (_controls.Player.Player1.WasReleasedThisFrame())
         {
             Debug.Log("Input is canceled");
-            _holdDuration = 0;
 
-            if (_isHeld == true && _hasItem)
+            if (_isHeld == true)
             {
                 HoldRelease();
+
+                if (_hasItem)
+                {
+                    // activate stuff
+                }
             }
             else if (_isTap)
             {
-                _isTap = false;
-                this._rb.velocity = Vector3.zero;
+                TapRelease();
             }
         }
     }
