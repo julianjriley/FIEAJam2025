@@ -6,12 +6,11 @@ using UnityEngine.Splines;
 public class Coaster : MonoBehaviour
 {
     public float Force;
-
-    //private Vector2 forceVector;
-    // Start is called before the first frame update
+    public SplineAnimate splineAnimate;
+    public float Lifetime;
     void Start()
     {
-        //forceVector = new Vector2(1* Force, 0f);
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
@@ -25,5 +24,9 @@ public class Coaster : MonoBehaviour
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), _collid, true);
         yield return new WaitForSeconds(0.15f);
         Physics2D.IgnoreCollision(GetComponent<Collider2D>(), _collid, false);
+    }
+    IEnumerator DestroySelf() {
+        yield return new WaitForSeconds(Lifetime);
+        Destroy(this.transform.parent.gameObject);
     }
 }
