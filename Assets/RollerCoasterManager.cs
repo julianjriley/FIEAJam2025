@@ -13,9 +13,13 @@ public class RollerCoasterManager : MonoBehaviour
     public float TimeBetweenCars;
     public float StartDelay;
     public float Interval;
+    public Transform[] HazardSpawns;
+    public Object HazardSign;
+    public float TrainDelay;
     // Start is called before the first frame update
     void Start()
     {
+        Physics.IgnoreLayerCollision(2, 2, true);
         InvokeRepeating("DecideSpawnLogic", StartDelay, Interval);
     }
 
@@ -33,12 +37,24 @@ public class RollerCoasterManager : MonoBehaviour
     }
     void DecideCoasterLogic() {
         Debug.Log("DecideCoasterLogic");
-        int _numCoasterCars = Random.Range(7, 12);
+        int _numCoasterCars = Random.Range(10, 15);
         int _rand = Random.Range(0, 2);
+        HandleHazardSymbol(_rand);
         StartCoroutine(SpawnCoaster(_numCoasterCars, _rand));
     }
 
+    void HandleHazardSymbol(int _coasterChoice) {
+        Vector3 _spawnPos = Vector3.zero;
+        if (_coasterChoice == 0) {
+            _spawnPos = HazardSpawns[0].position;
+        } else if (_coasterChoice == 1) {
+            _spawnPos = HazardSpawns[1].position;
+        }
+        Instantiate(HazardSign, _spawnPos, Quaternion.identity);
+    }
+
     IEnumerator SpawnCoaster(int _numCoasterCars, int _coasterChoice) {
+        yield return new WaitForSeconds(TrainDelay);
         while (counter < _numCoasterCars) {
             SpawnCoasterPiece(counter, _coasterChoice);
             yield return new WaitForSeconds(TimeBetweenCars);

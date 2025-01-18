@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7067815701519912551}
   - component: {fileID: 5191372119336400446}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CoasterCar (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 7590580153963541361}
   - component: {fileID: 6269064907581342177}
   - component: {fileID: 2038181189352282597}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
