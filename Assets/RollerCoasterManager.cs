@@ -25,29 +25,32 @@ public class RollerCoasterManager : MonoBehaviour
     }*/
 
     void DecideSpawnLogic() {
-        int _rand = Random.Range(1, 3);
+        int _rand = Random.Range(1, 4);
         //50% chance to spawn a coaster at this interval
         if (_rand == 1 || _rand == 2) {
             DecideCoasterLogic();
         }
     }
     void DecideCoasterLogic() {
-        int _numCoasterCars = Random.Range(4, 7);
-        int _rand = Random.Range(1, 2);
+        Debug.Log("DecideCoasterLogic");
+        int _numCoasterCars = Random.Range(7, 12);
+        int _rand = Random.Range(0, 2);
         StartCoroutine(SpawnCoaster(_numCoasterCars, _rand));
     }
 
     IEnumerator SpawnCoaster(int _numCoasterCars, int _coasterChoice) {
-        while (counter != _numCoasterCars) {
+        while (counter < _numCoasterCars) {
             SpawnCoasterPiece(counter, _coasterChoice);
             yield return new WaitForSeconds(TimeBetweenCars);
             counter++;
         }
+        Debug.Log("SpawnCoaster ends");
+        counter = 0;
     }
 
     void SpawnCoasterPiece(int _index, int _coasterChoice) {
         GameObject _temp = null;
-        if (_coasterChoice == 1) {
+        if (_coasterChoice == 0) {
             if (_index == 0) {
                 _temp = (GameObject) Instantiate(Coaster1[_index]);
             } else if (_index % 2 == 0) {
@@ -55,7 +58,7 @@ public class RollerCoasterManager : MonoBehaviour
             } else {
                 _temp = (GameObject) Instantiate(Coaster1[1]);
             }
-        } else if (_coasterChoice == 2) {
+        } else if (_coasterChoice == 1) {
             if (_index == 0) {
                 _temp = (GameObject) Instantiate(Coaster2[_index]);
             } else if (_index % 2 == 0) {

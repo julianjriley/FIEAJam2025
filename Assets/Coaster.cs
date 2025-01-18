@@ -10,7 +10,7 @@ public class Coaster : MonoBehaviour
     public float Lifetime;
     void Start()
     {
-        
+        StartCoroutine(DestroySelf());
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
