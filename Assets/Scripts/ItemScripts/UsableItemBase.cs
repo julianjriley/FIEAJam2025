@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class UsableItemBase : MonoBehaviour
 {
-    private GameObject owningPlayer;
-
+    protected GameObject owningPlayer;
+    protected Vector2 facingDirection;
     //This function is called by any of the players after they instantiate their held item.
-    public virtual void UseItem(GameObject player)
+    public virtual void UseItem(GameObject player, Vector2 direction)
     {
         owningPlayer = player;
+        facingDirection = direction;
         UseItemFunctionality();
     }
 
@@ -19,5 +20,8 @@ public class UsableItemBase : MonoBehaviour
 
     }
 
-    
+
+
+
+
 }
