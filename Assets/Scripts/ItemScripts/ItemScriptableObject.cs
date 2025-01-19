@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Item", menuName = "UsableItem")]
 public class ItemScriptableObject : ScriptableObject
 {
     [SerializeField] Sprite sprite;

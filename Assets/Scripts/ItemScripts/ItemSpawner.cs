@@ -63,7 +63,7 @@ public class ItemSpawner : MonoBehaviour
     IEnumerator SpawnVom(GameObject theVomit)
     {
         yield return new WaitForSeconds(0.8f);
-        DropVomit();
+        //DropVomit();
     }
 
     void DropItem()
@@ -76,7 +76,7 @@ public class ItemSpawner : MonoBehaviour
         }
         else
         {
-            Invoke("DropVomit", 3f);
+            //Invoke("DropVomit", 3f);
         }
         // Assign the shadow to a random position to start from
 
@@ -99,7 +99,7 @@ public class ItemSpawner : MonoBehaviour
         }
         else
         {
-            DropItem();
+            return;
         }
     }
 

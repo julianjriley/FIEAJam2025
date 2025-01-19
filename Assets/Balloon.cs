@@ -15,7 +15,7 @@ public class Balloon : MonoBehaviour
     private Animator _anim;
     private ItemScriptableObject _item;
 
-    public List<GameObject> ItemsList;
+    public List<ItemScriptableObject> ItemsList;
     [SerializeField]
     private float _height;
     [SerializeField]
@@ -24,7 +24,7 @@ public class Balloon : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _item = ItemsList[UnityEngine.Random.Range(0, 3)].GetComponent<ItemScriptableObject>();
+        _item = ItemsList[UnityEngine.Random.Range(0, 3)];
         _anim.Play("Balloon");
         
     }

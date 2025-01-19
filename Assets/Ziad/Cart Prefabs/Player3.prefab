@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1133993697541369482}
   - component: {fileID: 8029090527244477058}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 7715836199129853809}
   - component: {fileID: 5702430162023763490}
   - component: {fileID: 3852867805853188766}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player3
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ Transform:
   m_Children:
   - {fileID: 3420167496184238538}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8614093504340208802
 MonoBehaviour:
@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb8b307f14c79064b941440a607eb496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Item: {fileID: 0}
   ZRotation: 180
   Force: 6
   _player: 3
@@ -377,7 +378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3420167496184238538}
   - component: {fileID: 6214419295786560599}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SquashAndStretch
   m_TagString: Untagged
   m_Icon: {fileID: 0}

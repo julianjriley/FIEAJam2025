@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -262,7 +263,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (_hasItem && Item != null) // need to add check if item != null
                 {
-                    Item.GetUsableItem().GetComponent<UsableItemBase>().UseItem(this.gameObject, new Vector2(transform.right.x, transform.right.y));
+                    UseTheItem();
                 }
             }
             else if (_isTap)
@@ -278,7 +279,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (_hasItem && Item != null) // need to add check if item != null
                 {
-                    Item.GetUsableItem().GetComponent<UsableItemBase>().UseItem(this.gameObject, new Vector2(transform.right.x, transform.right.y));
+                    UseTheItem();
                 }
             }
             else if (_isTap)
@@ -294,7 +295,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (_hasItem && Item != null) // need to add check if item != null
                 {
-                    Item.GetUsableItem().GetComponent<UsableItemBase>().UseItem(this.gameObject, new Vector2(transform.right.x, transform.right.y));
+                    UseTheItem();
                 }
             }
             else if (_isTap)
@@ -310,7 +311,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (_hasItem && Item != null) // need to add check if item != null
                 {
-                    Item.GetUsableItem().GetComponent<UsableItemBase>().UseItem(this.gameObject, new Vector2(transform.right.x, transform.right.y));
+                    UseTheItem();
                 }
             }
             else if (_isTap)
@@ -376,5 +377,13 @@ public class PlayerMovement : MonoBehaviour
     {
         _hasControl = true;
         _tapCount = 0;
+    }
+
+    void UseTheItem()
+    {
+        GameObject UsableItem = Instantiate(Item.GetUsableItem(), gameObject.transform.position, Quaternion.identity);
+        UsableItem.GetComponent<UsableItemBase>().UseItem(this.gameObject, new Vector2(transform.right.x, transform.right.y));
+        Item = null;
+        _hasItem = false;
     }
 }
