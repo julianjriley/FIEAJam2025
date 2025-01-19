@@ -144,6 +144,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Tap(InputAction.CallbackContext context)
     {
+        if (_playerMovement == null)
+        {
+            return;
+        }
         _tapCount += 1;
         if (_hasControl == false)
         {
@@ -179,6 +183,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void MultiTap(InputAction.CallbackContext context)
     {
+        if (_playerMovement == null)
+        {
+            return;
+        }
         Debug.Log("MULTITAP called");
 
         // Stop spinning out of control
@@ -190,6 +198,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void Hold(InputAction.CallbackContext context)
     {
+        if (_playerMovement == null)
+        {
+            return;
+        }
         if (_hasControl == false)
         {
             return;
