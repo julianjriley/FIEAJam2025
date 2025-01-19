@@ -40,7 +40,15 @@ public class ItemSpawner : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerMovement>())
         {
+            // when bumper collides with balloon
+            Balloon = _item;
+            // TODO BELOW: set the bumper's item to the balloon 
+            // other.gameObject.GetComponent<PlayerMovement>().item = Balloon
 
+            // TODO: Write CopyItem function in PlayerMovement so that the bumpers deal w the item in that script
+            // other.gameObject.GetComponent<PlayerMovement>().CopyItem; 
+
+            Destroy(Balloon);
         }
     }
     // Update is called once per frame
