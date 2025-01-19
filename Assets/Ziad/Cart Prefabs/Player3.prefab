@@ -174,7 +174,7 @@ Transform:
   - {fileID: 3420167496184238538}
   - {fileID: 5322950483023070738}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8614093504340208802
 MonoBehaviour:
@@ -199,6 +199,8 @@ MonoBehaviour:
   MinMagnitudeDiff: 3
   _myVelocity: 0
   score: {fileID: 7635922097749330440}
+  MashPrompt: {fileID: 0}
+  MashPrefab: {fileID: 6320983460457107101, guid: a47135df2b6c0144f84af3d8ed9df642, type: 3}
 --- !u!50 &8432064635137066071
 Rigidbody2D:
   serializedVersion: 4

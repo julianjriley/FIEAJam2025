@@ -46,7 +46,8 @@ public class PlayerMovement : MonoBehaviour
     private Queue magnitudeValues = new Queue();
     public float _myVelocity = 0;
     public PlayerScore score;
-
+    public GameObject MashPrompt;
+    public GameObject MashPrefab;
 
     
 
@@ -367,12 +368,20 @@ public class PlayerMovement : MonoBehaviour
         _tapCount = 0;
         score.LosePopcorn();
         //TODO: code for push force
+        if (MashPrompt == null) {
+            MashPrompt = Instantiate(MashPrefab);
+            MashPrompt.GetComponent<ButtonMashPrompt>().target = transform;
+        }
     }
     public void SpinOut()
     {
         _hasControl = false;
         _tapCount = 0;
         score.LosePopcorn();
+        if (MashPrompt == null) {
+            MashPrompt = Instantiate(MashPrefab);
+            MashPrompt.GetComponent<ButtonMashPrompt>().target = transform;
+        }
     }
 
     void Stabilize()
@@ -380,6 +389,9 @@ public class PlayerMovement : MonoBehaviour
         _hasControl = true;
         _tapCount = 0;
         score.StopTheBleeding();
+        if (MashPrompt != null) {
+            Destroy(MashPrompt);
+        }
     }
 
     void UseTheItem()
