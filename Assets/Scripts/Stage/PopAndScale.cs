@@ -6,6 +6,9 @@ using UnityEngine;
 
 public class PopAndScale : MonoBehaviour
 {
+    private AudioSource _source;
+    private AudioClip _clip;
+    [SerializeField] private List<AudioClip> _clipList;
     [SerializeField] private Sprite[] _popcornSprites;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -29,6 +32,7 @@ public class PopAndScale : MonoBehaviour
     float initialScalingMult;
     private void Start()
     {
+        _source = GetComponent<AudioSource>();
         theCollider = GetComponent<Collider2D>();
         startingPosition = transform.position;
         initialScalingMult = transform.localScale.x;
@@ -103,6 +107,15 @@ public class PopAndScale : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        int chance = UnityEngine.Random.Range(1, 6);
+        int clipChance = UnityEngine.Random.Range(0, 1);
+
+        _clip = _clipList[clipChance];
+        if (chance == 1)
+        {
+            _source.Play();
+        }
+
         collision.GetComponent<PlayerMovement>().score.AddToScore();
         Destroy(gameObject);
     }

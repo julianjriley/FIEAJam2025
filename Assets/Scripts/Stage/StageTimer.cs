@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class StageTimer : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class StageTimer : MonoBehaviour
     private Animator _textAnim;
     [SerializeField]
     private float TotalTime = 60;
+    [SerializeField]
+    private GameObject _transitionObj;
 
     void Start()
     {
@@ -37,8 +40,18 @@ public class StageTimer : MonoBehaviour
             TotalTime = 0;
             TimerText.text = TotalTime.ToString();
 
+            StartCoroutine(StartTransitionSequence());
             // play sound
             // connect to leaderboard
         }
+    }
+
+    IEnumerator StartTransitionSequence()
+    {
+        _transitionObj.SetActive(true);
+        yield return new WaitForSeconds(3f); // Change float to be the length it takes for the transition animation to complete
+
+        SceneManager.LoadScene("Results");
+
     }
 }
