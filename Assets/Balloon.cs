@@ -13,9 +13,9 @@ public class Balloon : MonoBehaviour
     GameObject ShadowObj;
 
     private Animator _anim;
-    private UsableItemBase _item;
+    private ItemScriptableObject _item;
 
-    public List<UsableItemBase> ItemsList;
+    public List<GameObject> ItemsList;
     [SerializeField]
     private float _height;
     [SerializeField]
@@ -24,7 +24,7 @@ public class Balloon : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _item = ItemsList[UnityEngine.Random.Range(0, 3)];
+        _item = ItemsList[UnityEngine.Random.Range(0, 3)].GetComponent<ItemScriptableObject>();
         _anim.Play("Balloon");
         
     }
@@ -41,14 +41,10 @@ public class Balloon : MonoBehaviour
             BalloonPickedUp?.Invoke();
             Destroy(ShadowObj);
             Destroy(gameObject);
+
+            other.gameObject.GetComponent<PlayerMovement>().Item = _item;
+
         }
-
-
-        // TODO BELOW: set the bumper's item to the balloon 
-        // other.gameObject.GetComponent<PlayerMovement>().item = Balloon
-
-        // TODO: Write CopyItem function in PlayerMovement so that the bumpers deal w the item in that script
-        // other.gameObject.GetComponent<PlayerMovement>().CopyItem; 
     }
     
 }

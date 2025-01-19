@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6948717418591698325}
   m_Layer: 0
   m_Name: Balloon
-  m_TagString: Untagged
+  m_TagString: Balloon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -163,10 +163,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemsList:
-  - {fileID: 2193575979959267720, guid: e485c1d19153b9f499efcdf37c47fc0f, type: 3}
-  - {fileID: -5692056697104687118, guid: 5c525db9909e4bb4fa97cd19b2384e42, type: 3}
-  - {fileID: 3776399225626637865, guid: 7ac5cd86fa4110c4f8c3e966ac8ee7c2, type: 3}
-  - {fileID: -7489462858395575126, guid: 32bab3eb802faa747b4d7fca03de4cf0, type: 3}
+  - {fileID: 1649056943126229987, guid: e485c1d19153b9f499efcdf37c47fc0f, type: 3}
+  - {fileID: 1649056943126229987, guid: 7ac5cd86fa4110c4f8c3e966ac8ee7c2, type: 3}
+  - {fileID: 1649056943126229987, guid: 5c525db9909e4bb4fa97cd19b2384e42, type: 3}
+  - {fileID: 1649056943126229987, guid: 32bab3eb802faa747b4d7fca03de4cf0, type: 3}
   _height: 3
   _speed: 0.3
 --- !u!95 &6948717418591698325

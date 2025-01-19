@@ -1511,6 +1511,7 @@ MonoBehaviour:
   Canvas: {fileID: 180926138}
   BalloonPrefab: {fileID: 1649056943126229987, guid: ec7190c1d8ebb514b812573d329f5fa7, type: 3}
   Shadow: {fileID: 1923396959921131802, guid: fa770fde28c446249b2727ec70696469, type: 3}
+  VomitPrefab: {fileID: 1649056943126229987, guid: cc67a1c06ec904243bd10baafc258080, type: 3}
   SpawnpointList:
   - {fileID: 382269504}
   - {fileID: 1225269621}
