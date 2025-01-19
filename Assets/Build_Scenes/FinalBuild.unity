@@ -1554,6 +1554,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerText: {fileID: 1389377400}
   TotalTime: 60
+  _transitionObj: {fileID: 0}
 --- !u!1 &380876310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2498,11 +2499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb79bff2e36bb12409c8c010de93b45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerScores:
-  - {fileID: 2091607253}
-  - {fileID: 918868541}
-  - {fileID: 1855120859}
-  - {fileID: 1520054959}
+  playerScores: []
   scoreValues: 00000000000000000000000000000000
   theWinner: 
 --- !u!4 &745528458
@@ -5726,6 +5723,55 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1840300211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1840300213}
+  - component: {fileID: 1840300212}
+  m_Layer: 0
+  m_Name: PlayerContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1840300212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840300211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b461a64458b4a43ba4befc0a00661e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thePlayers:
+  - {fileID: 2091607253}
+  - {fileID: 918868541}
+  - {fileID: 1855120859}
+  - {fileID: 1520054959}
+--- !u!4 &1840300213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840300211}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 351.01886, y: 259.7317, z: 0.24410711}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1855120859 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7635922097749330440, guid: 12e4cc63683528d4699c6620741fd5bc, type: 3}
