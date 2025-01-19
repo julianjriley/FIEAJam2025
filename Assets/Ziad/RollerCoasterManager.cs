@@ -19,9 +19,11 @@ public class RollerCoasterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RollerCoasterItem.SummonTheCoaster += InstantSpawnCoasters;
         Physics.IgnoreLayerCollision(2, 2, true);
         InvokeRepeating("DecideSpawnLogic", StartDelay, Interval);
     }
+
 
     /*void Test() {
         GameObject _temp = (GameObject) Instantiate(test);

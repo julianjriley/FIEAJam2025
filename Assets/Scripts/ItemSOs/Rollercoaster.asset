@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Rollercoaster
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
-  itemPrefab: {fileID: 1649056943126229987, guid: 32bab3eb802faa747b4d7fca03de4cf0, type: 3}
+  itemPrefab: {fileID: 2377765591331941265, guid: 30a9cb00a46069c4ca8762b73e343a74, type: 3}
