@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 3539091073535492995}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.44891602, y: 0.44891602, z: 0.44891602}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1945517564007298676}
   m_Father: {fileID: 0}
@@ -46,6 +46,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b799cdf5e7cf44f8e857e942d3e75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _popcornSprites:
+  - {fileID: 21300000, guid: 0890bad57d530944ca7c6da5401e5b53, type: 3}
+  - {fileID: 21300000, guid: 9b226354874f0a445aeb94f7433bf2cd, type: 3}
+  - {fileID: 21300000, guid: fe0f321a9ba20de4b8f8b8d5f7e7decc, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -57,7 +61,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3539091073535492995}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -120,8 +124,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4249269861468160299}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.1, y: 0.16, z: 0}
+  m_LocalScale: {x: 0.27287364, y: 0.27287364, z: 0.27287364}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4072233171443061664}
