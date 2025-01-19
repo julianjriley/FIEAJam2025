@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -11,6 +12,8 @@ using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public ItemScriptableObject Item;
 
     private PlayerMovement _playerMovement;
     private Rigidbody2D _rb;
@@ -252,17 +255,15 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-
-
         if (_controls.Player.Player1.WasReleasedThisFrame())
         {
             if (_isHeld == true)
             {
                 HoldRelease();
 
-                if (_hasItem) // need to add check if item != null
+                if (_hasItem && Item != null) // need to add check if item != null
                 {
-                    
+                    UseTheItem();
                 }
             }
             else if (_isTap)
@@ -276,9 +277,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 HoldRelease();
 
-                if (_hasItem) // need to add check if item != null
+                if (_hasItem && Item != null) // need to add check if item != null
                 {
-                    // activate stuff
+                    UseTheItem();
                 }
             }
             else if (_isTap)
@@ -292,9 +293,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 HoldRelease();
 
-                if (_hasItem) // need to add check if item != null
+                if (_hasItem && Item != null) // need to add check if item != null
                 {
-                    // activate stuff
+                    UseTheItem();
                 }
             }
             else if (_isTap)
@@ -308,9 +309,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 HoldRelease();
 
-                if (_hasItem) // need to add check if item != null
+                if (_hasItem && Item != null) // need to add check if item != null
                 {
-                    // activate stuff
+                    UseTheItem();
                 }
             }
             else if (_isTap)
@@ -325,6 +326,14 @@ public class PlayerMovement : MonoBehaviour
         if (other.gameObject.tag == "Player") {
             GameObject _otherPlayer = other.gameObject;
             HandleSpinOuts(_otherPlayer);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Balloon")
+        {
+            _hasItem = true;
         }
     }
 
@@ -371,5 +380,13 @@ public class PlayerMovement : MonoBehaviour
         _hasControl = true;
         _tapCount = 0;
         score.StopTheBleeding();
+    }
+
+    void UseTheItem()
+    {
+        GameObject UsableItem = Instantiate(Item.GetUsableItem(), gameObject.transform.position, Quaternion.identity);
+        UsableItem.GetComponent<UsableItemBase>().UseItem(this.gameObject, new Vector2(transform.right.x, transform.right.y));
+        Item = null;
+        _hasItem = false;
     }
 }

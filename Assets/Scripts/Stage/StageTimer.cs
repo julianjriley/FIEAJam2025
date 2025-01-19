@@ -10,7 +10,8 @@ public class StageTimer : MonoBehaviour
     public static event Action OnTimerEnd;
     public TextMeshProUGUI TimerText;
     private Animator _textAnim;
-    public float TotalTime = 60;
+    [SerializeField]
+    private float TotalTime = 60;
 
     void Start()
     {
