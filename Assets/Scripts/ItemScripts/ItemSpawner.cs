@@ -51,13 +51,13 @@ public class ItemSpawner : MonoBehaviour
 
         if (_freeSpots[_vomitSpawnPoint] == 0)
         {
-            GameObject theVomit = Instantiate(VomitPrefab);
-            theVomit.transform.position = SpawnpointList[_vomitSpawnPoint].position;
-            theVomit.SetActive(true);
+            //GameObject theVomit = Instantiate(VomitPrefab);
+            //theVomit.transform.position = SpawnpointList[_vomitSpawnPoint].position;
+            //theVomit.SetActive(true);
 
-            _freeSpots[_vomitSpawnPoint] = 1;
+            //_freeSpots[_vomitSpawnPoint] = 1;
 
-            StartCoroutine(SpawnVom(theVomit));
+            //StartCoroutine(SpawnVom(theVomit));
         }
     }
     IEnumerator SpawnVom(GameObject theVomit)

@@ -1511,6 +1511,7 @@ MonoBehaviour:
   Canvas: {fileID: 180926138}
   BalloonPrefab: {fileID: 1649056943126229987, guid: ec7190c1d8ebb514b812573d329f5fa7, type: 3}
   Shadow: {fileID: 1923396959921131802, guid: fa770fde28c446249b2727ec70696469, type: 3}
+  VomitPrefab: {fileID: 0}
   SpawnpointList:
   - {fileID: 382269504}
   - {fileID: 1225269621}
@@ -5796,7 +5797,7 @@ MonoBehaviour:
   - {fileID: 6423793429705340057, guid: b255de43626ba3c46a2f7b753747d13c, type: 3}
   - {fileID: 6504986679617719174, guid: e97864162dd4ca245997c142a47ccaa1, type: 3}
   - {fileID: 5371757103226579597, guid: 664c07dc71645f84ca709bdfe1b4d1fc, type: 3}
-  TimeBetweenCars: 0.1
+  TimeBetweenCars: 0.07
   StartDelay: 4
   Interval: 7
   HazardSpawns:
