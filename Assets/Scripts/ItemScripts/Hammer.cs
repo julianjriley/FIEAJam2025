@@ -5,11 +5,21 @@ using UnityEngine;
 public class Hammer : UsableItemBase
 {
     //TODO: Assign this
+
+    private Animator _animator;
     [SerializeField] LayerMask playerLayer;
+
+    private void Start()
+    {
+        _animator = GetComponent<Animator>();
+    }
     protected override void UseItemFunctionality()
     {
-        //TODO: Play animation up here or something
         base.UseItemFunctionality();
+
+        _animator.Play("Hit");
+        // play sound
+
         Collider2D[] colliders;
         colliders = Physics2D.OverlapCircleAll(facingDirection * 1.3f, 4, playerLayer);
         foreach (Collider2D collider in colliders)

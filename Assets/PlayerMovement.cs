@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
 
     float multiTapThreshold;
 
+    public PlayerScore score;
+
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
