@@ -52,8 +52,9 @@ public class StageTimer : MonoBehaviour
 
     IEnumerator StartTransitionSequence()
     {
-        _transitionObj.SetActive(true);
-        yield return new WaitForSeconds(3f); // Change float to be the length it takes for the transition animation to complete
+        //_transitionObj.SetActive(true);
+        OnTimerEnd?.Invoke();
+        yield return new WaitForSeconds(1f); // Change float to be the length it takes for the transition animation to complete
 
         SceneManager.LoadScene("Results");
 
