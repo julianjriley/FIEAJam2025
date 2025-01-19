@@ -28,6 +28,13 @@ public class RollerCoasterManager : MonoBehaviour
         _temp.GetComponent<SplineAnimate>().m_Target = Splines[0];
     }*/
 
+    public void InstantSpawnCoasters() {
+        //this function does not account for rollercoasters happening at the same time, i feel like it's fine
+        StopAllCoroutines();
+        StartCoroutine(SpawnCoaster(7, 1, 0f));
+        StartCoroutine(SpawnCoaster(7, 2, 0f));
+    }
+
     void DecideSpawnLogic() {
         int _rand = Random.Range(1, 4);
         //50% chance to spawn a coaster at this interval
@@ -40,7 +47,7 @@ public class RollerCoasterManager : MonoBehaviour
         int _numCoasterCars = Random.Range(10, 15);
         int _rand = Random.Range(0, 2);
         HandleHazardSymbol(_rand);
-        StartCoroutine(SpawnCoaster(_numCoasterCars, _rand));
+        StartCoroutine(SpawnCoaster(_numCoasterCars, _rand, TrainDelay));
     }
 
     void HandleHazardSymbol(int _coasterChoice) {
@@ -53,8 +60,8 @@ public class RollerCoasterManager : MonoBehaviour
         Instantiate(HazardSign, _spawnPos, Quaternion.identity);
     }
 
-    IEnumerator SpawnCoaster(int _numCoasterCars, int _coasterChoice) {
-        yield return new WaitForSeconds(TrainDelay);
+    IEnumerator SpawnCoaster(int _numCoasterCars, int _coasterChoice, float _delay) {
+        yield return new WaitForSeconds(_delay);
         while (counter < _numCoasterCars) {
             SpawnCoasterPiece(counter, _coasterChoice);
             yield return new WaitForSeconds(TimeBetweenCars);
