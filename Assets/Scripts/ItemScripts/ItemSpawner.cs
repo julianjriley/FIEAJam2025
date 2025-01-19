@@ -15,35 +15,79 @@ public class ItemSpawner : MonoBehaviour
     public Canvas Canvas;
     public GameObject BalloonPrefab;
     public GameObject Shadow;
+    public GameObject VomitPrefab;
     public List<Transform> SpawnpointList;
 
     [SerializeField]
     private List<int> _freeSpots;
 
     private int _spawnPoint;
+    private int _vomitSpawnPoint;
 
-    private float _currentSpawnpoint;
+    private int _vomCounter = 0;
 
     private void Start()
     {
         Balloon.BalloonPickedUp += SubtractToCounter;
+        Vomit.VomHit += SubtractToVomCounter;
+
         Invoke("DropItem", 2f);
     }
+
+    void DropVomit()
+    {
+        if (_vomCounter >= 2)
+        {
+            return;
+        }
+        _vomitSpawnPoint = UnityEngine.Random.Range(0, 5);
+
+        if (_vomitSpawnPoint == _spawnPoint)
+        {
+            return;
+        }
+
+       
+
+        if (_freeSpots[_vomitSpawnPoint] == 0)
+        {
+            GameObject theVomit = Instantiate(VomitPrefab);
+            theVomit.transform.position = SpawnpointList[_vomitSpawnPoint].position;
+            theVomit.SetActive(true);
+
+            _freeSpots[_vomitSpawnPoint] = 1;
+
+            StartCoroutine(SpawnVom(theVomit));
+        }
+    }
+    IEnumerator SpawnVom(GameObject theVomit)
+    {
+        yield return new WaitForSeconds(0.8f);
+        DropVomit();
+    }
+
     void DropItem()
     {
+       
+
         if (counter >= 3)
         {
             return;
+        }
+        else
+        {
+            Invoke("DropVomit", 3f);
         }
         // Assign the shadow to a random position to start from
 
         _spawnPoint = UnityEngine.Random.Range(0, 5);
 
         // SHADOW anticipation starts below !!       
-        GameObject theShadow = Instantiate(Shadow);
+        
 
         if (_freeSpots[_spawnPoint] == 0)
         {
+            GameObject theShadow = Instantiate(Shadow);
             theShadow.transform.position = SpawnpointList[_spawnPoint].position;
             theShadow.SetActive(true);
 
@@ -77,5 +121,12 @@ public class ItemSpawner : MonoBehaviour
         _freeSpots[_spawnPoint] = 0;
         counter--;
     }
+
+    void SubtractToVomCounter()
+    {
+        _freeSpots[_vomitSpawnPoint] = 0;
+        _vomCounter--;
+    }
+
 
 }
