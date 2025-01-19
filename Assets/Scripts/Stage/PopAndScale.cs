@@ -25,7 +25,7 @@ public class PopAndScale : MonoBehaviour
     {
         startingPosition = transform.position;
         rotationSpeed = Random.Range(1f, 2f) * 80f * (Random.Range(0,2)*2-1);
-        AssignPopValues(Random.Range(0.3f,4f), new Vector2(Random.Range(-1,1f), Random.Range(-1, 1f)).normalized);
+        AssignPopValues(Random.Range(0.3f,3f), new Vector2(Random.Range(-1,1f), Random.Range(-1, 1f)).normalized);
         //AssignPopValues(2, new Vector2(1, 1).normalized);
     }
     
