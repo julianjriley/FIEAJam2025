@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     public float MinMagnitudeDiff;
     private Queue magnitudeValues = new Queue();
     public float _myVelocity = 0;
+    public PlayerScore score;
 
     private void Awake()
     {
