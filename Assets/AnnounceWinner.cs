@@ -14,6 +14,7 @@ public class AnnounceWinner : MonoBehaviour
 
     void ShowTheText()
     {
+        theWinnerText.gameObject.SetActive(true);
         theWinnerText.text = ScoreManager.instance.theWinner;
     }
 }

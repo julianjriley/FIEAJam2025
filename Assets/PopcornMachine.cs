@@ -17,8 +17,8 @@ public class PopcornMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpawnDelay = secondsToFinish/PopcornLeft;
-        StartCoroutine(SpawnPopcorn());
+        
+        //StartCoroutine(SpawnPopcorn());
     }
 
     IEnumerator SpawnPopcorn() {
@@ -36,5 +36,11 @@ public class PopcornMachine : MonoBehaviour
             yield return new WaitForSeconds(SpawnDelay);
         }
             DanglyAnimator.SetBool("noMorePopcorn", true);
+    }
+
+    public void StartPopping()
+    {
+        SpawnDelay = secondsToFinish / PopcornLeft;
+        StartCoroutine(SpawnPopcorn());
     }
 }
