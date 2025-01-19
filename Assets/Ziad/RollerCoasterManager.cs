@@ -63,7 +63,7 @@ public class RollerCoasterManager : MonoBehaviour
     IEnumerator SpawnCoaster(int _numCoasterCars, int _coasterChoice, float _delay) {
         yield return new WaitForSeconds(_delay);
         while (counter < _numCoasterCars) {
-            SpawnCoasterPiece(counter, _coasterChoice);
+            SpawnCoasterPiece(counter, _coasterChoice, _numCoasterCars);
             yield return new WaitForSeconds(TimeBetweenCars);
             counter++;
         }
@@ -71,7 +71,21 @@ public class RollerCoasterManager : MonoBehaviour
         counter = 0;
     }
 
-    void SpawnCoasterPiece(int _index, int _coasterChoice) {
+    void SpawnCoasterPiece(int _index, int _coasterChoice, int _numCoasterCars) {
+        GameObject _temp = null;
+        if (_index == 0) {
+            _temp = (GameObject) Instantiate(Coaster1[_index]);
+        } else if (_index < _numCoasterCars - 1) {
+            Debug.Log("index < counter - 1");
+            _temp = (GameObject) Instantiate(Coaster1[1]);
+        } else {
+            Debug.Log("Last Car Reached");
+            _temp = (GameObject) Instantiate(Coaster1[2]);
+        }
+        _temp.GetComponent<SplineAnimate>().Container = Splines[_coasterChoice];
+    }
+
+    /* void SpawnCoasterPiece(int _index, int _coasterChoice) {
         GameObject _temp = null;
         if (_coasterChoice == 0) {
             if (_index == 0) {
@@ -91,5 +105,5 @@ public class RollerCoasterManager : MonoBehaviour
             }
         }
         _temp.GetComponent<SplineAnimate>().Container = Splines[_coasterChoice];
-    }
+    }*/
 }
