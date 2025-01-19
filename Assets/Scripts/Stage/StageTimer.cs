@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,6 +6,8 @@ using UnityEngine;
 
 public class StageTimer : MonoBehaviour
 {
+    public static event Action <StageTimer> OnTimerStart;
+    public static event Action OnTimerEnd;
     public TextMeshProUGUI TimerText;
     private Animator _textAnim;
     public float TotalTime = 60;
