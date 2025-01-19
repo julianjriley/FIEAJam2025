@@ -34,6 +34,7 @@ public class ItemSpawner : MonoBehaviour
         _spawnPoint = UnityEngine.Random.Range(1, 6);
         Balloon.gameObject.transform.position = SpawnpointList[_spawnPoint].position;
         Instantiate(Balloon);
+        Balloon.transform.localScale = new Vector2(.5f, .5f);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
