@@ -33,13 +33,21 @@ public class PlayerMovement : MonoBehaviour
 
     float multiTapThreshold;
 
+    private ItemScriptableObject _heldItem = null;
+
+    private AudioSource _source;
+    public AudioClip PlayerHitSound;
+    public float MinAttackVelocity;
+    public CircleCollider2D FrontCollid;
+    public float MinMagnitudeDiff;
+    private Queue magnitudeValues = new Queue();
+    public float _myVelocity = 0;
     public PlayerScore score;
 
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _controls = new PlayerControls();
-
        
         
         switch(_player)
@@ -66,6 +74,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _higherSpeed = ZRotation * 3;
+        _source = GetComponent<AudioSource>();
+        FrontCollid = GetComponent<CircleCollider2D>();
     }
 
     private void OnEnable()
@@ -198,6 +208,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        magnitudeValues.Enqueue(_rb.velocity.magnitude);
+        if (magnitudeValues.Count == 4) {
+            _myVelocity = (float) magnitudeValues.Dequeue();
+        }
         if (!_hasControl)
             return;
         // Player is always rotating in a fixed position
@@ -245,7 +259,7 @@ public class PlayerMovement : MonoBehaviour
 
                 if (_hasItem) // need to add check if item != null
                 {
-                    // activate stuff
+                    
                 }
             }
             else if (_isTap)
@@ -305,16 +319,35 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.GetComponent<PlayerMovement>())
-        {
-            // When colliding with other players
-            // make them spin out
-
-            other.gameObject.GetComponent<PlayerMovement>()._hasControl = false;
-            
+        if (other.gameObject.tag == "Player") {
+            GameObject _otherPlayer = other.gameObject;
+            HandleSpinOuts(_otherPlayer);
         }
-
     }
+
+    private void HandleSpinOuts(GameObject _hitPlayer) {
+        _myVelocity = (float) magnitudeValues.Dequeue();
+        float _theirVelocity = _hitPlayer.GetComponent<PlayerMovement>()._myVelocity;
+            Debug.Log("my velocity = " + _myVelocity + gameObject.name);
+            Debug.Log("their velocity = " + _theirVelocity);
+            if (_myVelocity > 0.2f) {
+                if (PlayerHitSound != null) {
+                    _source.PlayOneShot(PlayerHitSound, 0.3f);
+                }
+            }
+            if (FrontCollid.bounds.Contains(_hitPlayer.GetComponent<CircleCollider2D>().bounds.center)) {
+                //Debug.Log("Head to Head " + gameObject.name);
+                if (_myVelocity - _theirVelocity >= MinMagnitudeDiff) {
+                    _hitPlayer.GetComponent<PlayerMovement>().SpinOut(Vector2.zero);
+                }
+            } else if (_myVelocity < _theirVelocity + 1.5f) {
+                return;
+            } else {
+                _hitPlayer.GetComponent<PlayerMovement>().SpinOut(Vector2.zero);
+            }
+        //}
+    }
+            //other.gameObject.GetComponent<PlayerMovement>()._hasControl = false;
 
     public void SpinOut(Vector2 pushDirection)
     {
