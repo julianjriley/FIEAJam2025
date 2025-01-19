@@ -15,7 +15,7 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField]
     private UsableItemBase _item;
 
-    public UsableItemBase Balloon;
+    public GameObject Balloon;
     public List<Transform> SpawnpointList;
     public List<UsableItemBase> ItemsList;
 
@@ -32,8 +32,10 @@ public class ItemSpawner : MonoBehaviour
     void DropItem()
     {
         _spawnPoint = UnityEngine.Random.Range(1, 6);
-        Balloon.gameObject.transform.position = SpawnpointList[_spawnPoint].position;
+        Balloon.transform.position = SpawnpointList[_spawnPoint].position;
         Instantiate(Balloon);
+
+        // INTERPOLATE size change
         Balloon.transform.localScale = new Vector2(.5f, .5f);
     }
 
@@ -42,14 +44,14 @@ public class ItemSpawner : MonoBehaviour
         if(other.gameObject.GetComponent<PlayerMovement>())
         {
             // when bumper collides with balloon
-            Balloon = _item;
+            Destroy(Balloon);
             // TODO BELOW: set the bumper's item to the balloon 
             // other.gameObject.GetComponent<PlayerMovement>().item = Balloon
 
             // TODO: Write CopyItem function in PlayerMovement so that the bumpers deal w the item in that script
             // other.gameObject.GetComponent<PlayerMovement>().CopyItem; 
 
-            Destroy(Balloon);
+
         }
     }
     // Update is called once per frame
