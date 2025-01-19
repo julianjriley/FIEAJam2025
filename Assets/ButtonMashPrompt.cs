@@ -5,6 +5,8 @@ using UnityEngine;
 public class ButtonMashPrompt : MonoBehaviour
 {
     public Transform target;
+    [SerializeField]
+    private SpriteRenderer rend;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,5 +19,9 @@ public class ButtonMashPrompt : MonoBehaviour
         if (target != null) {
             transform.position = target.position;
         }
+    }
+
+    public void SetSprite(Sprite _sprite) {
+        rend.sprite = _sprite;
     }
 }

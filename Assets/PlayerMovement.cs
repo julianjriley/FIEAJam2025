@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject MashPrompt;
     public GameObject MashPrefab;
 
-    
+    public GameObject ItemInstance;
 
     private void Awake()
     {
@@ -338,6 +338,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void SetItemPortrait(GameObject input) {
+        ItemInstance = input;
+    }
+
     private void HandleSpinOuts(GameObject _hitPlayer) {
         _myVelocity = (float) magnitudeValues.Dequeue();
         float _theirVelocity = _hitPlayer.GetComponent<PlayerMovement>()._myVelocity;
@@ -400,5 +404,10 @@ public class PlayerMovement : MonoBehaviour
         UsableItem.GetComponent<UsableItemBase>().UseItem(this.gameObject, new Vector2(transform.right.x, transform.right.y));
         Item = null;
         _hasItem = false;
+        if (ItemInstance != null) {
+            Destroy(ItemInstance);
+            ItemInstance = null;
+            Debug.Log("ItemInstance destroyed");
+        }
     }
 }

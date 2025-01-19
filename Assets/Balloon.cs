@@ -23,6 +23,8 @@ public class Balloon : MonoBehaviour
     [SerializeField]
     private float _speed;
 
+    public GameObject ItemPrefab;
+
     void Start()
     {
         _anim = GetComponent<Animator>();
@@ -47,7 +49,11 @@ public class Balloon : MonoBehaviour
             Destroy(gameObject);
 
             other.gameObject.GetComponent<PlayerMovement>().Item = _item;
-
+            GameObject temp = (GameObject) Instantiate(ItemPrefab);
+            other.gameObject.GetComponent<PlayerMovement>().SetItemPortrait(temp);
+            //give target and sprite
+            temp.GetComponent<ButtonMashPrompt>().target = other.transform;
+            temp.GetComponent<ButtonMashPrompt>().SetSprite(other.gameObject.GetComponent<PlayerMovement>().Item.GetSprite());
         }
     }
 

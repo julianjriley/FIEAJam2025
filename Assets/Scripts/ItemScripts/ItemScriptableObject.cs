@@ -13,5 +13,7 @@ public class ItemScriptableObject : ScriptableObject
     {
         return itemPrefab;
     }
-    
+    public Sprite GetSprite() {
+        return sprite;
+    }
 }
