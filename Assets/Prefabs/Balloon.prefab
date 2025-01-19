@@ -169,6 +169,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9611eee6748b32d4c82847fb8dd48327, type: 2}
   _height: 3
   _speed: 0.3
+  ItemPrefab: {fileID: 6154996548419682988, guid: 38442f9da1c4a6a47ba0866ee17f1f71, type: 3}
+  ItemInstance: {fileID: 0}
 --- !u!95 &6948717418591698325
 Animator:
   serializedVersion: 5

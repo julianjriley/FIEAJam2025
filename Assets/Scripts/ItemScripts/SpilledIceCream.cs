@@ -28,8 +28,14 @@ public class SpilledIceCream : UsableItemBase
             return;
 
             //TODO: SpinOut bullshit goes here
-            collision.GetComponent<PlayerMovement>().SpinOut();
+            
+        if(collision.TryGetComponent<PlayerMovement>(out PlayerMovement thePlayer));
+        {
+            thePlayer.SpinOut();
             Destroy(gameObject);
+        }
+            
+            
         
     }
 }
