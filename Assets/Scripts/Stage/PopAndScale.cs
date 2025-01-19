@@ -6,13 +6,15 @@ using UnityEngine;
 
 public class PopAndScale : MonoBehaviour
 {
-
+    [SerializeField] private Sprite[] _popcornSprites;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] SpriteRenderer spriteRenderer;
     Vector2 startingPosition;
     Vector2 endPosition;
     Vector2 direction;
     float distance;
+
+    Collider2D theCollider;
 
     float distanceFloat;
 
@@ -23,11 +25,17 @@ public class PopAndScale : MonoBehaviour
     float slideDistance;
 
     float rotationSpeed;
+
+    float initialScalingMult;
     private void Start()
     {
+        theCollider = GetComponent<Collider2D>();
         startingPosition = transform.position;
+        initialScalingMult = transform.localScale.x;
+        spriteRenderer.sprite = _popcornSprites[Random.Range(0, _popcornSprites.Length)];
         rotationSpeed = Random.Range(1f, 2f) * 80f * (Random.Range(0,2)*2-1);
-        AssignPopValues(Random.Range(0.3f,3f), new Vector2(Random.Range(-1,1f), Random.Range(-1, 1f)).normalized);
+        AssignPopValues(Random.Range(0.3f,2f), new Vector2(Random.Range(-1,1f), Random.Range(-1, 1f)).normalized);
+        Invoke("EnableTheCollider", 1.9f);
         //AssignPopValues(2, new Vector2(1, 1).normalized);
     }
     
@@ -43,7 +51,7 @@ public class PopAndScale : MonoBehaviour
         if(!landed)
             transform.position = Vector2.Lerp(startingPosition, endPosition, distanceProgress);
         if (distanceProgress < 0.5f)
-            distanceProgress += Time.deltaTime * 2.5f;
+            distanceProgress += Time.deltaTime * 4f;
         else
             distanceProgress += Time.deltaTime /1.5f;
         UpdateScaleAndSprite();
@@ -65,6 +73,7 @@ public class PopAndScale : MonoBehaviour
             
     }
 
+
     void UpdateScaleAndSprite()
     {
         if (landed)
@@ -81,7 +90,7 @@ public class PopAndScale : MonoBehaviour
         tempColor.a = 1 - scalingFactor;
         spriteRenderer.color = tempColor;
 
-        transform.localScale = new Vector2(1 + scalingFactor, 1 + scalingFactor);
+        transform.localScale = new Vector2((1 + scalingFactor) * initialScalingMult,( 1 + scalingFactor) * initialScalingMult);
         
     }
 
@@ -96,5 +105,10 @@ public class PopAndScale : MonoBehaviour
     {
         collision.GetComponent<PlayerMovement>().score.AddToScore();
         Destroy(gameObject);
+    }
+
+    void EnableTheCollider()
+    {
+        theCollider.enabled = true;
     }
 }
