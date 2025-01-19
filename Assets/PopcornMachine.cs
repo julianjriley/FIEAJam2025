@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PopcornMachine : MonoBehaviour
 {
+    public static float secondsToFinish = 5;
     public float PopcornLeft;
     public Object[] Popcorn;
     private int counter = 0;
@@ -14,6 +15,7 @@ public class PopcornMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SpawnDelay = secondsToFinish/PopcornLeft;
         StartCoroutine(SpawnPopcorn());
     }
 
