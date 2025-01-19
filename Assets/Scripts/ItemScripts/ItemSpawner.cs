@@ -26,6 +26,8 @@ public class ItemSpawner : MonoBehaviour
 
     private int _vomCounter = 0;
 
+    bool coroutineRunning = false;
+
     private void Start()
     {
         Balloon.BalloonPickedUp += SubtractToCounter;
@@ -68,8 +70,8 @@ public class ItemSpawner : MonoBehaviour
 
     void DropItem()
     {
-       
 
+        Debug.Log(counter);
         if (counter >= 3)
         {
             return;
@@ -80,7 +82,7 @@ public class ItemSpawner : MonoBehaviour
         }
         // Assign the shadow to a random position to start from
 
-        _spawnPoint = UnityEngine.Random.Range(0, 5);
+        _spawnPoint = UnityEngine.Random.Range(0, 6);
 
         // SHADOW anticipation starts below !!       
         
@@ -105,6 +107,7 @@ public class ItemSpawner : MonoBehaviour
 
     IEnumerator SpawnMore(GameObject theShadow)
     {
+        coroutineRunning = true;
         yield return new WaitForSeconds(0.8f);
 
         GameObject theBalloon = Instantiate(BalloonPrefab);
@@ -114,12 +117,15 @@ public class ItemSpawner : MonoBehaviour
 
         yield return new WaitForSeconds(2.4f);
         DropItem();
+        coroutineRunning = false;
     }
 
     void SubtractToCounter()
     {
         _freeSpots[_spawnPoint] = 0;
         counter--;
+        if(!coroutineRunning)
+            Invoke("DropItem", 5f);
     }
 
     void SubtractToVomCounter()

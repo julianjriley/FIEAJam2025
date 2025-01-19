@@ -33,5 +33,6 @@ public class Baseball : UsableItemBase
             return;
         rb.AddForce(collision.GetContact(0).normal * ballSpeed, ForceMode2D.Impulse);
         collision.gameObject.GetComponent<PlayerMovement>().SpinOut();
+        Destroy(gameObject);
     }
 }

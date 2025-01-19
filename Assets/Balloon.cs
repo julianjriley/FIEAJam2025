@@ -12,6 +12,8 @@ public class Balloon : MonoBehaviour
 
     GameObject ShadowObj;
 
+    Collider2D theCollider;
+
     private Animator _anim;
     private ItemScriptableObject _item;
 
@@ -24,8 +26,10 @@ public class Balloon : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
-        _item = ItemsList[UnityEngine.Random.Range(0, 3)];
+        _item = ItemsList[UnityEngine.Random.Range(0, 4)];
         _anim.Play("Balloon");
+        theCollider = GetComponent<Collider2D>();
+        Invoke("ActivateCollider", 2.5f);
         
     }
 
@@ -45,6 +49,11 @@ public class Balloon : MonoBehaviour
             other.gameObject.GetComponent<PlayerMovement>().Item = _item;
 
         }
+    }
+
+    void ActivateCollider()
+    {
+        theCollider.enabled = true;
     }
     
 }
