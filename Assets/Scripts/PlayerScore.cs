@@ -36,7 +36,7 @@ public class PlayerScore : MonoBehaviour
         }
         popcorn -= amountLost;
         InvokeRepeating("BleedPopcorn", 0.2f, 0.35f);
-        UpdateSprite(popcorn);
+        UpdateSprite(popcornSpriteIndex);
     }
 
     //Call this when regaining composure
@@ -52,7 +52,7 @@ public class PlayerScore : MonoBehaviour
             thePopcorn.GetComponent<PopAndScale>().AssignPopValues(3f, new Vector2(Random.Range(-1, 1f), Random.Range(-1, 1f)).normalized);
             popcorn -= 1;
         }
-        UpdateSprite(popcorn);
+        UpdateSprite(popcornSpriteIndex);
     }
     private void Update()
     {
