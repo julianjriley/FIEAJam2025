@@ -14,9 +14,9 @@ public class Coaster : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.GetComponent<Rigidbody2D>() != null) {
-            Debug.Log("Collision");
-            other.gameObject.GetComponent<Rigidbody2D>().AddForce(other.GetContact(0).normal.normalized * Force * -1f, ForceMode2D.Impulse); //Rigidbody _rb = 
+        if (other.gameObject.GetComponent<Rigidbody2D>() != null && other.gameObject.tag == "Player") {
+            other.gameObject.GetComponent<Rigidbody2D>().AddForce(other.GetContact(0).normal.normalized * Force * -1f, ForceMode2D.Impulse);
+            other.gameObject.GetComponent<PlayerMovement>().SpinOut(Vector2.zero);
             StartCoroutine(HandleCollisions(other.collider));
         }
     }
