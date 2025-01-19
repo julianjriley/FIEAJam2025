@@ -108,7 +108,7 @@ public class PopAndScale : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         int chance = UnityEngine.Random.Range(1, 6);
-        int clipChance = UnityEngine.Random.Range(0, 1);
+        int clipChance = UnityEngine.Random.Range(0, 2);
 
         _clip = _clipList[clipChance];
         if (chance == 1)
