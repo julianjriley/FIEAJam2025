@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cbdb0de611876c447b740a7ce34f1101
+guid: 0e3e64d4b341b9640b63151ec45aee7d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -120,19 +120,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -162,13 +149,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IMG_3465_0
+      name: Glass_0
       rect:
         serializedVersion: 2
-        x: 246
-        y: 0
-        width: 44
-        height: 241
+        x: 87
+        y: 74
+        width: 344
+        height: 504
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 619b26a55e52dc44a922b8967adf604b
-      internalID: 2104231238
+      spriteID: d76d77b35a89f76449cc592038356d12
+      internalID: 1879075451
       vertices: []
       indices: 
       edges: []
@@ -193,7 +180,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IMG_3465_0: 2104231238
+      Glass_0: 1879075451
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

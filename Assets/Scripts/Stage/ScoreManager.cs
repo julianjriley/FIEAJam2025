@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager instance;
     public PlayerScore[] playerScores;
     public int[] scoreValues;
+    public string theWinner;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -26,23 +27,44 @@ public class ScoreManager : MonoBehaviour
     }
     void Start()
     {
-        if (GameObject.FindGameObjectsWithTag("Player") != null)
-        {
-            GameObject[] thePlayers = GameObject.FindGameObjectsWithTag("Player");
-            for(int i = 0; i < thePlayers.Length; i++)
-            {
-                playerScores[0] = thePlayers[i].GetComponent<PlayerMovement>().score;
-            }
-        }
         StageTimer.OnTimerEnd += GetScores;
     }
 
     void GetScores()
     {
+        int highestScoreIndex = 0;
+        int highestScore = 0;
         for (int i = 0;i < scoreValues.Length;i++)
         {
             scoreValues[i] = playerScores[i].GetScore();
+            if(scoreValues[i] > highestScore)
+            {
+                highestScoreIndex = i;
+                highestScore = scoreValues[i];
+                
+            }
+                
         }
+        switch(highestScoreIndex)
+        {
+            case 0:
+                theWinner = "Sonic Wins!";
+                break;
+            case 1:
+                theWinner = "Lightning McQueen Wins!";
+                break;
+            case 2:
+                theWinner = "Kirby Wins!";
+                break;
+            case 3:
+                theWinner = "Freddy Wins!";
+                break;
+            default:
+                theWinner = "The House Wins!";
+                break;
+                   
+        }
+
     }
 
     // Update is called once per frame
