@@ -44,6 +44,9 @@ public class PlayerMovement : MonoBehaviour
     public float _myVelocity = 0;
     public PlayerScore score;
 
+
+    
+
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
