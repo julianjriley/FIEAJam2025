@@ -11,14 +11,15 @@ public class PlayerScore : MonoBehaviour
 
     int popcornSpriteIndex = 0;
 
-    public void UpdateSprite(int amountOfPopcorn)
+    public void UpdateSprite(int popcornSpriteIndex)
     {
-        
+        popcornSpriteRenderer.sprite = popcornLevelSprites[popcornSpriteIndex];
     }
 
     public void AddToScore()
     {
         popcorn += 1;
+        UpdateSprite(popcornSpriteIndex);
     }
 
     //Call this when spinning out
@@ -33,6 +34,7 @@ public class PlayerScore : MonoBehaviour
         }
         popcorn -= amountLost;
         InvokeRepeating("BleedPopcorn", 0.2f, 0.35f);
+        UpdateSprite(popcorn);
     }
 
     //Call this when regaining composure
@@ -46,11 +48,32 @@ public class PlayerScore : MonoBehaviour
         {
             Instantiate(popcornObject, transform.position, Quaternion.identity);
         }
+        UpdateSprite(popcorn);
+    }
+    private void Update()
+    {
+        DeterminePopcornLevel(popcorn);
     }
 
     void DeterminePopcornLevel(int amountOfPopcorn)
     {
-        if(amountOfPopcorn <= 5)
+        if(amountOfPopcorn > 59)
+        {
+            popcornSpriteIndex = 4;
+        }
+        if(amountOfPopcorn > 34)
+        {
+            popcornSpriteIndex = 3;
+        }
+        if(amountOfPopcorn > 14)
+        {
+            popcornSpriteIndex = 2;
+        }
+        if(amountOfPopcorn > 4)
+        {
+            popcornSpriteIndex = 1;
+        }
+        if(amountOfPopcorn > -1)
         {
             popcornSpriteIndex = 0;
         }
