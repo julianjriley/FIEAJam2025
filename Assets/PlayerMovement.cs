@@ -209,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
     {
         magnitudeValues.Enqueue(_rb.velocity.magnitude);
         if (magnitudeValues.Count == 4) {
-            magnitudeValues.Dequeue();
+            _myVelocity = (float) magnitudeValues.Dequeue();
         }
         if (!_hasControl)
             return;
@@ -318,12 +318,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        Debug.Log("magnitude of " + gameObject.name + " = " + _rb.velocity.magnitude);
         if (other.gameObject.tag == "Player") {
             GameObject _otherPlayer = other.gameObject;
-            if (PlayerHitSound != null) {
-                _source.PlayOneShot(PlayerHitSound, 0.3f);
-            }
             HandleSpinOuts(_otherPlayer);
         }
     }
@@ -331,23 +327,24 @@ public class PlayerMovement : MonoBehaviour
     private void HandleSpinOuts(GameObject _hitPlayer) {
         _myVelocity = (float) magnitudeValues.Dequeue();
         float _theirVelocity = _hitPlayer.GetComponent<PlayerMovement>()._myVelocity;
-        Debug.Log("my velocity = " + _myVelocity + gameObject.name);
-        Debug.Log("their velocity = " + _theirVelocity);
-        if (_myVelocity >= MinAttackVelocity) { //|| _rb.linearVelocity.y >= MinAttackVelocity
-            //head on collision
+            Debug.Log("my velocity = " + _myVelocity + gameObject.name);
+            Debug.Log("their velocity = " + _theirVelocity);
+            if (_myVelocity > 0.2f) {
+                if (PlayerHitSound != null) {
+                    _source.PlayOneShot(PlayerHitSound, 0.3f);
+                }
+            }
             if (FrontCollid.bounds.Contains(_hitPlayer.GetComponent<CircleCollider2D>().bounds.center)) {
-                Debug.Log("Head to Head " + gameObject.name);
+                //Debug.Log("Head to Head " + gameObject.name);
                 if (_myVelocity - _theirVelocity >= MinMagnitudeDiff) {
                     _hitPlayer.GetComponent<PlayerMovement>().SpinOut(Vector2.zero);
                 }
-            } else if (_myVelocity < _theirVelocity) {
-                //Debug.Log("Second Case " + gameObject.name);
+            } else if (_myVelocity < _theirVelocity + 1.5f) {
                 return;
             } else {
-                //Debug.Log("Last case " + gameObject.name);
                 _hitPlayer.GetComponent<PlayerMovement>().SpinOut(Vector2.zero);
             }
-        }
+        //}
     }
             //other.gameObject.GetComponent<PlayerMovement>()._hasControl = false;
 

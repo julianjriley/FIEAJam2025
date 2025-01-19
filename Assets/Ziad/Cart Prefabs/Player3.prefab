@@ -139,9 +139,10 @@ MonoBehaviour:
   _player: 3
   _hasControl: 1
   PlayerHitSound: {fileID: 8300000, guid: 174860cd929d4fb42b070cbb0a25d6ea, type: 3}
-  MinAttackVelocity: 8.5
+  MinAttackVelocity: 9.5
   FrontCollid: {fileID: 0}
   MinMagnitudeDiff: 3
+  _myVelocity: 0
 --- !u!50 &8432064635137066071
 Rigidbody2D:
   serializedVersion: 4
@@ -266,9 +267,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.85, y: 0}
+  m_Offset: {x: -0.96, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.65
 --- !u!82 &3852867805853188766
 AudioSource:
   m_ObjectHideFlags: 0
