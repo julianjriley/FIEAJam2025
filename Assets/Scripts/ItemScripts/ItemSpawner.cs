@@ -1,0 +1,81 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.UI;
+
+
+public class ItemSpawner : MonoBehaviour
+{
+    // randomly pick a point on the map to spawn from an array of points
+    // make shadow appear as anticipation
+
+    int counter = 0;
+    public Canvas Canvas;
+    public GameObject BalloonPrefab;
+    public GameObject Shadow;
+    public List<Transform> SpawnpointList;
+
+    [SerializeField]
+    private List<int> _freeSpots;
+
+    private int _spawnPoint;
+
+    private float _currentSpawnpoint;
+
+    private void Start()
+    {
+        Balloon.BalloonPickedUp += SubtractToCounter;
+        Invoke("DropItem", 2f);
+    }
+    void DropItem()
+    {
+        if (counter >= 3)
+        {
+            return;
+        }
+        // Assign the shadow to a random position to start from
+
+        _spawnPoint = UnityEngine.Random.Range(0, 5);
+
+        // SHADOW anticipation starts below !!       
+        GameObject theShadow = Instantiate(Shadow);
+
+        if (_freeSpots[_spawnPoint] == 0)
+        {
+            theShadow.transform.position = SpawnpointList[_spawnPoint].position;
+            theShadow.SetActive(true);
+
+            _freeSpots[_spawnPoint] = 1;
+            counter++;
+
+            // LERP to a random end position
+            StartCoroutine(SpawnMore(theShadow));
+        }
+        else
+        {
+            DropItem();
+        }
+    }
+
+    IEnumerator SpawnMore(GameObject theShadow)
+    {
+        yield return new WaitForSeconds(0.8f);
+
+        GameObject theBalloon = Instantiate(BalloonPrefab);
+        theBalloon.transform.position = theShadow.transform.position;
+
+        theBalloon.GetComponent<Balloon>().SetShadow(theShadow);
+
+        yield return new WaitForSeconds(2.4f);
+        DropItem();
+    }
+
+    void SubtractToCounter()
+    {
+        _freeSpots[_spawnPoint] = 0;
+        counter--;
+    }
+
+}
