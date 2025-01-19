@@ -15,22 +15,21 @@ public class SpilledIceCream : UsableItemBase
     }
     protected override void UseItemFunctionality()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
         base.UseItemFunctionality();
-
+        rb = GetComponent<Rigidbody2D>();
         rb.AddForce(facingDirection * creamSpeed, ForceMode2D.Impulse);
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject != gameObject)
+        if (collision.gameObject == owningPlayer)
             return;
-        if(collision.gameObject.layer == layerMask)
-        {
+
             //TODO: SpinOut bullshit goes here
             collision.GetComponent<PlayerMovement>().SpinOut();
             Destroy(gameObject);
-        }
+        
     }
 }
