@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b799cdf5e7cf44f8e857e942d3e75b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _clipList:
+  - {fileID: 8300000, guid: 878b779470978fd4abfaa4e6424255e9, type: 3}
+  - {fileID: 8300000, guid: 7259b3a69ba40d34caad956da99c821b, type: 3}
   _popcornSprites:
   - {fileID: 21300000, guid: 0890bad57d530944ca7c6da5401e5b53, type: 3}
   - {fileID: 21300000, guid: 9b226354874f0a445aeb94f7433bf2cd, type: 3}
