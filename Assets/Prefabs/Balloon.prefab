@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3436655195129135392}
   - component: {fileID: 8831944531716006810}
   - component: {fileID: 8881691277595952437}
+  - component: {fileID: 2807948357856302703}
+  - component: {fileID: 6948717418591698325}
   m_Layer: 0
   m_Name: Balloon
   m_TagString: Untagged
@@ -27,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1649056943126229987}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.0000002, y: 3, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -148,3 +150,43 @@ CircleCollider2D:
   m_Offset: {x: 0.29996514, y: 0.7251197}
   serializedVersion: 2
   m_Radius: 3.5994391
+--- !u!114 &2807948357856302703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649056943126229987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff23e4d2414021d429533a9a46f48947, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemsList:
+  - {fileID: 2193575979959267720, guid: e485c1d19153b9f499efcdf37c47fc0f, type: 3}
+  - {fileID: -5692056697104687118, guid: 5c525db9909e4bb4fa97cd19b2384e42, type: 3}
+  - {fileID: 3776399225626637865, guid: 7ac5cd86fa4110c4f8c3e966ac8ee7c2, type: 3}
+  - {fileID: -7489462858395575126, guid: 32bab3eb802faa747b4d7fca03de4cf0, type: 3}
+  _height: 3
+  _speed: 0.3
+--- !u!95 &6948717418591698325
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649056943126229987}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a3dc7e25d5f66a4194631c557a39856, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

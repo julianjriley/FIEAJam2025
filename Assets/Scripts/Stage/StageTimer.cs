@@ -9,6 +9,7 @@ public class StageTimer : MonoBehaviour
     public static event Action <StageTimer> OnTimerStart;
     public static event Action OnTimerEnd;
     public TextMeshProUGUI TimerText;
+    private Animator _textAnim;
     public float TotalTime = 60;
 
     void Start()
@@ -18,6 +19,12 @@ public class StageTimer : MonoBehaviour
 
     void Update()
     {
+        if (TotalTime == 10)
+        {
+            // get rid of the crown haver
+            // TODO: Make TextChange animation in Animator 
+            _textAnim.Play("TextChange");
+        }
         if (TotalTime > 0)
         {
             TotalTime -= Time.deltaTime;
