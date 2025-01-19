@@ -90,6 +90,6 @@ public class RollerCoasterManager : MonoBehaviour
                 _temp = (GameObject) Instantiate(Coaster2[1]);
             }
         }
-        _temp.GetComponent<SplineAnimate>().m_Target = Splines[_coasterChoice];
+        _temp.GetComponent<SplineAnimate>().Container = Splines[_coasterChoice];
     }
 }
