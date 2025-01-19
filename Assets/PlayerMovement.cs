@@ -339,7 +339,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void SetItemPortrait(GameObject input) {
+        Destroy(ItemInstance);
         ItemInstance = input;
+
     }
 
     private void HandleSpinOuts(GameObject _hitPlayer) {
@@ -410,4 +412,62 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("ItemInstance destroyed");
         }
     }
+
+    private void OnDisable()
+    {
+
+        _controls.Player.Player1.performed -= context =>
+        {
+
+            if (context.interaction is TapInteraction)
+            {
+                Tap(context);
+            }
+            else if (context.interaction is HoldInteraction)
+            {
+                Hold(context);
+            }
+        };
+
+        _controls.Player.Player2.performed -= context =>
+        {
+
+            if (context.interaction is TapInteraction)
+            {
+                Tap(context);
+            }
+            else if (context.interaction is HoldInteraction)
+            {
+                Hold(context);
+            }
+        };
+
+        _controls.Player.Player3.performed -= context =>
+        {
+
+            if (context.interaction is TapInteraction)
+            {
+                Tap(context);
+            }
+            else if (context.interaction is HoldInteraction)
+            {
+                Hold(context);
+            }
+        };
+
+        _controls.Player.Player4.performed -= context =>
+        {
+
+            if (context.interaction is TapInteraction)
+            {
+                Tap(context);
+            }
+            else if (context.interaction is HoldInteraction)
+            {
+                Hold(context);
+            }
+        };
+
+    }
+
 }
