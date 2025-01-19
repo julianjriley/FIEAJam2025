@@ -1,12 +1,14 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PopcornMachine : MonoBehaviour
 {
+    
     public static float secondsToFinish = 5;
     public float PopcornLeft;
-    public Object[] Popcorn;
+    public GameObject[] Popcorn;
     private int counter = 0;
     public Transform[] PopcornTransforms;
     public float SpawnDelay;
@@ -21,7 +23,7 @@ public class PopcornMachine : MonoBehaviour
 
     IEnumerator SpawnPopcorn() {
         while (PopcornLeft != 0) {
-            int _rand = Random.Range(0, Popcorn.Length);
+            int _rand = UnityEngine.Random.Range(0, Popcorn.Length);
             GameObject _popcorn = null;
             if (counter % 2 == 0) {
                 _popcorn = (GameObject) Instantiate(Popcorn[_rand], PopcornTransforms[0].position, Quaternion.identity);
