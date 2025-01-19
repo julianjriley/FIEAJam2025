@@ -28,10 +28,11 @@ public class PlayerScore : MonoBehaviour
     {
         if (popcorn <= 0)
             return;
-        int amountLost = popcorn / 4;
+        int amountLost = (popcorn / 4) + (popcorn % 4);
         for (int i = 0; i < amountLost; i++)
         {
-            Instantiate(popcornObject, gameObject.transform.position, Quaternion.identity);
+            GameObject thePopcorn = Instantiate(popcornObject, gameObject.transform.position, Quaternion.identity);
+            thePopcorn.GetComponent<PopAndScale>().AssignPopValues(3f, new Vector2(Random.Range(-1, 1f), Random.Range(-1, 1f)).normalized);
         }
         popcorn -= amountLost;
         InvokeRepeating("BleedPopcorn", 0.2f, 0.35f);
@@ -47,7 +48,9 @@ public class PlayerScore : MonoBehaviour
     {
         if(popcorn > 0)
         {
-            Instantiate(popcornObject, transform.position, Quaternion.identity);
+            GameObject thePopcorn = Instantiate(popcornObject, gameObject.transform.position, Quaternion.identity);
+            thePopcorn.GetComponent<PopAndScale>().AssignPopValues(3f, new Vector2(Random.Range(-1, 1f), Random.Range(-1, 1f)).normalized);
+            popcorn -= 1;
         }
         UpdateSprite(popcorn);
     }
@@ -62,19 +65,19 @@ public class PlayerScore : MonoBehaviour
         {
             popcornSpriteIndex = 4;
         }
-        if(amountOfPopcorn > 34)
+        else if(amountOfPopcorn > 34)
         {
             popcornSpriteIndex = 3;
         }
-        if(amountOfPopcorn > 14)
+        else if(amountOfPopcorn > 14)
         {
             popcornSpriteIndex = 2;
         }
-        if(amountOfPopcorn > 4)
+        else if(amountOfPopcorn > 4)
         {
             popcornSpriteIndex = 1;
         }
-        if(amountOfPopcorn > -1)
+        else if(amountOfPopcorn > -1)
         {
             popcornSpriteIndex = 0;
         }

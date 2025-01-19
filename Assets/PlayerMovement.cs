@@ -356,17 +356,20 @@ public class PlayerMovement : MonoBehaviour
     {
         _hasControl = false;
         _tapCount = 0;
+        score.LosePopcorn();
         //TODO: code for push force
     }
     public void SpinOut()
     {
         _hasControl = false;
         _tapCount = 0;
+        score.LosePopcorn();
     }
 
     void Stabilize()
     {
         _hasControl = true;
         _tapCount = 0;
+        score.StopTheBleeding();
     }
 }
