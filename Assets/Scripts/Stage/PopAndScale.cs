@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class PopAndScale : MonoBehaviour
 {
+
+    [SerializeField] LayerMask playerLayer;
     [SerializeField] SpriteRenderer spriteRenderer;
     Vector2 startingPosition;
     Vector2 endPosition;
@@ -88,5 +90,11 @@ public class PopAndScale : MonoBehaviour
         transform.position = Vector2.Lerp(endPosition, endPosition + (direction * 0.8f), slideDistance);
 
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.GetComponent<PlayerMovement>().score.AddToScore();
+        Destroy(gameObject);
     }
 }

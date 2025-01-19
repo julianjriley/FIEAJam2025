@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerScore : MonoBehaviour
@@ -77,5 +78,10 @@ public class PlayerScore : MonoBehaviour
         {
             popcornSpriteIndex = 0;
         }
+    }
+
+    public int GetScore()
+    {
+        return popcorn;
     }
 }
