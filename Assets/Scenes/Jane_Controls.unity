@@ -237,7 +237,6 @@ MonoBehaviour:
   ZRotation: 180
   Force: 10
   _player: 1
-  _higherSpeed: 0
   _hasControl: 1
 --- !u!114 &158671732
 MonoBehaviour:
@@ -732,7 +731,6 @@ MonoBehaviour:
   ZRotation: 180
   Force: 10
   _player: 3
-  _higherSpeed: 0
   _hasControl: 1
 --- !u!4 &1009971950
 Transform:
@@ -877,7 +875,6 @@ MonoBehaviour:
   ZRotation: 180
   Force: 10
   _player: 4
-  _higherSpeed: 0
   _hasControl: 1
 --- !u!4 &1107704785
 Transform:
@@ -1124,7 +1121,6 @@ MonoBehaviour:
   ZRotation: 180
   Force: 10
   _player: 2
-  _higherSpeed: 0
   _hasControl: 1
 --- !u!4 &1703123983
 Transform:
