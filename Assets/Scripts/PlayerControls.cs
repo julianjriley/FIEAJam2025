@@ -33,7 +33,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""20809128-4dfa-440e-994a-7070bcdbb5bc"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,MultiTap,Hold"",
+                    ""interactions"": ""MultiTap(tapDelay=0.3,tapCount=5),Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -42,7 +42,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""2c7f5d28-22ef-470a-bf3d-c137b88ea938"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,MultiTap,Hold"",
+                    ""interactions"": ""MultiTap(tapDelay=0.3,tapCount=5),Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -51,7 +51,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""844e02f9-c7f3-4ba1-b021-3e834a6e7abd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,MultiTap,Hold"",
+                    ""interactions"": ""MultiTap(tapDelay=0.3,tapCount=5),Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -60,7 +60,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""id"": ""fc5caa1c-28fc-41dd-aeda-8ae5d4154263"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap,MultiTap,Hold"",
+                    ""interactions"": ""MultiTap(tapDelay=0.3,tapCount=5),Hold"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -69,7 +69,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""34394026-1f57-4c67-b574-c740e2ade1bb"",
                     ""path"": ""<Keyboard>/leftCtrl"",
-                    ""interactions"": ""Tap,MultiTap,Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Player1"",
@@ -80,7 +80,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""b1784fa3-ed5f-4158-9cb7-cbcd88102412"",
                     ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": ""Tap,MultiTap,Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Player2"",
@@ -91,7 +91,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""849d2c6f-34b8-45eb-af62-d7f7a52e47c0"",
                     ""path"": ""<Keyboard>/rightCtrl"",
-                    ""interactions"": ""Tap,MultiTap,Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Player3"",
@@ -102,7 +102,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""01e33957-2c91-41cb-9d46-0241b61126cd"",
                     ""path"": ""<Keyboard>/leftAlt"",
-                    ""interactions"": ""Tap,MultiTap,Hold"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Player4"",
