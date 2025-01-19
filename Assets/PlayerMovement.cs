@@ -20,7 +20,6 @@ public class PlayerMovement : MonoBehaviour
     public float Force;
     [SerializeField]
     private int _player;
-    [SerializeField]
     private float _higherSpeed;
 
     public bool _hasControl = true;
@@ -30,10 +29,15 @@ public class PlayerMovement : MonoBehaviour
     private bool _hasItem = false;
     private PlayerControls _controls;
 
+    int _tapCount = 0;
+
+    float multiTapThreshold;
+
     private void Awake()
     {
         _playerMovement = GetComponent<PlayerMovement>();
         _controls = new PlayerControls();
+
        
         
         switch(_player)
@@ -59,102 +63,84 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        Debug.Log(_rb.name);
+        _higherSpeed = ZRotation * 3;
     }
 
     private void OnEnable()
     {
-        _controls.Player.Player1.started += context =>
-        {
-            if (context.interaction is MultiTapInteraction)
-            {
-                Tap(context);
-            }
-        };
+
         _controls.Player.Player1.performed += context =>
         {
-            if (context.interaction is MultiTapInteraction)
+
+            if (context.interaction is TapInteraction)
             {
-                Debug.Log("MULTITAP performed");
-                MultiTap(context);
+                Tap(context);
             }
             else if (context.interaction is HoldInteraction)
             {
-                Debug.Log("HOLD performed");
                 Hold(context);
-            }
-        };
-
-        _controls.Player.Player2.started += context =>
-        {
-            if (context.interaction is MultiTapInteraction)
-            {
-                Tap(context);
             }
         };
 
         _controls.Player.Player2.performed += context =>
         {
 
-            if (context.interaction is MultiTapInteraction)
+            if (context.interaction is TapInteraction)
             {
-                MultiTap(context);
+                Tap(context);
             }
             else if (context.interaction is HoldInteraction)
             {
                 Hold(context);
-            }
-        };
-
-        _controls.Player.Player3.started += context =>
-        {
-            if (context.interaction is MultiTapInteraction)
-            {
-                Tap(context);
             }
         };
 
         _controls.Player.Player3.performed += context =>
         {
-            if (context.interaction is MultiTapInteraction)
+
+            if (context.interaction is TapInteraction)
             {
-                MultiTap(context);
+                Tap(context);
             }
             else if (context.interaction is HoldInteraction)
             {
                 Hold(context);
-            }
-        };
-
-        _controls.Player.Player4.started += context =>
-        {
-            if (context.interaction is MultiTapInteraction)
-            {
-                Tap(context);
             }
         };
 
         _controls.Player.Player4.performed += context =>
         {
-            if (context.interaction is MultiTapInteraction)
+
+            if (context.interaction is TapInteraction)
             {
-                MultiTap(context);
+                Tap(context);
             }
             else if (context.interaction is HoldInteraction)
             {
                 Hold(context);
             }
         };
+
     }
 
     private void Tap(InputAction.CallbackContext context)
     {
-        if(_hasControl == false)
+        _tapCount += 1;
+        if (_hasControl == false)
         {
+            if(_tapCount >= 5)
+            {
+                Stabilize();
+                return;
+            }
+
+            multiTapThreshold = 0f;
             return; 
         }
+        multiTapThreshold = 0f;
+        if (_tapCount > 3)
+            SpinOut();
 
-        Debug.Log("TAP called");
 
         _isTap = true;
 
@@ -166,7 +152,7 @@ public class PlayerMovement : MonoBehaviour
     private void TapRelease()
     {
         // Player should start rotating again
-        Debug.Log("TAP is RELEASED");
+
 
         _isTap = false;
 
@@ -210,6 +196,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!_hasControl)
+            return;
         // Player is always rotating in a fixed position
 
         if(_controls.Player.Player1.IsPressed() == false && _player == 1)
@@ -232,12 +220,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        multiTapThreshold += Time.deltaTime;
+        if (multiTapThreshold >= 0.3f)
+        {
+            _tapCount = 0;
+            multiTapThreshold = 0;
+        }
 
-        if(_hasControl == false)
+        if (_hasControl == false)
         {
             this.transform.Rotate(Vector3.forward * _higherSpeed * Time.deltaTime);
             return;
         }
+
+
 
         if (_controls.Player.Player1.WasReleasedThisFrame())
         {
@@ -316,5 +312,23 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
+    }
+
+    public void SpinOut(Vector2 pushDirection)
+    {
+        _hasControl = false;
+        _tapCount = 0;
+        //TODO: code for push force
+    }
+    public void SpinOut()
+    {
+        _hasControl = false;
+        _tapCount = 0;
+    }
+
+    void Stabilize()
+    {
+        _hasControl = true;
+        _tapCount = 0;
     }
 }
