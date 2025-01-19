@@ -67,6 +67,23 @@ public class ScoreManager : MonoBehaviour
 
     }
 
+    public int GetHighestScoreIndex()
+    {
+        Debug.Log("Scorevalues length = " + scoreValues.Length);
+        int highestScoreIndex = 0;
+        int highestScore = 0;
+        for (int i = 0; i < scoreValues.Length;i++)
+        {
+            scoreValues[i] = playerScores[i].GetScore();
+            if(scoreValues[i] > highestScore)
+            {
+                highestScoreIndex = i;
+                highestScore = scoreValues[i];
+            }
+        }
+        return highestScoreIndex;
+    }
+
     // Update is called once per frame
     void Update()
     {

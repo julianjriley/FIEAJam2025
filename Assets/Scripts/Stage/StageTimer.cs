@@ -21,6 +21,10 @@ public class StageTimer : MonoBehaviour
         TimerText.text = TotalTime.ToString();
     }
 
+    public float GetTime() {
+        return TotalTime;
+    }
+
     void Update()
     {
         if (TotalTime == 10)
